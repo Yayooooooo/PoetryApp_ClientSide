@@ -1,30 +1,48 @@
-# poetry_vue
+# Assignment 2 - Agile Software Practice.
 
-> A Vue.js project
+Name: Yuting Jing
 
-## Build Setup
+## Client UI.
+Web API GitLab repo:https://gitlab.com/Leslie_Lora/cicdapi.git 
+Client GitLab repo: https://gitlab.com/Leslie_Lora/vue-cicd-2.git
+![][Home]
+>>Home has daily recommendation of part of a poem. You can click the link to read the complete poem.
 
-``` bash
-# install dependencies
-npm install
+![][Look poem]
+>>After user click the link in the home page, the web will lead user to this page to read the whole version of the poem
 
-# serve with hot reload at localhost:8080
-npm run dev
+![][Authors]
+>>All authors shows all authors in the page.
 
-# build for production with minification
-npm run build
+![][AllPoems]
+>>All poems shows all the poems in the page.
 
-# build for production and view the bundle analyzer report
-npm run build --report
+![][Register]
+>>User register in this page. It checks whether the information user enters are valid.
 
-# run unit tests
-npm run unit
+![][Login]
+>>User login here. If the User name or passwords don't match, it will have an alter window to tell user to enter the info again.
 
-# run e2e tests
-npm run e2e
+![][MyPoem]
+>>Before user login, the table in this page will be empty. If user doesn't have any poem of his or her own, the table will be empty. 
 
-# run all tests
-npm test
-```
+>>User can add a poem by clicking the button and the web will lead user to another page to enter the info about his or her peom
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## E2E/Cypress testing.
+
+## Web API CI.
+
+## GitLab CI.
+
+
+
+
+[Home]: ./img/Home.png
+[Authors]:./img/Authors.png
+[AllPoems]:./img/AllPoems.png
+[Register]:./img/Register.png
+[Login]:./img/Login.png
+[MyPoem]:./img/MyPoem.png
+[Look Poem]:./img/Look Poem.png
