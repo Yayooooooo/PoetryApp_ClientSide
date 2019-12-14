@@ -8,7 +8,7 @@ Client GitLab repo: https://gitlab.com/Leslie_Lora/vue-cicd-2.git
 ![][Home]
 >>Home has daily recommendation of part of a poem. You can click the link to read the complete poem.
 
-![][Look poem]
+![][Look Poem]
 >>After user click the link in the home page, the web will lead user to this page to read the whole version of the poem
 
 ![][Authors]
