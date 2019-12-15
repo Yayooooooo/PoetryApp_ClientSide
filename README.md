@@ -65,7 +65,6 @@ More information please check Design Document.doc
 
 ![][MyPoem]
 >>Before user login, the table in this page will be empty. If user doesn't have any poem of his or her own, the table will be empty. 
-
 >>User can add a poem by clicking the button and the web will lead user to another page to enter the info about his or her peom
 
 
