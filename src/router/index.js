@@ -9,6 +9,7 @@ import Register from "@/components/Register";
 import LookPoem from "@/components/LookPoem";
 import PoemForm from "@/components/PoemForm";
 import AddPoem from "@/components/AddPoem";
+import Edit from "@/components/Edit";
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/AddPoem',
       name: 'AddPoem',
       component: AddPoem
+    },
+    {
+      path: '/Edit',
+      name: 'Edit',
+      component:Edit
     }
   ]
 })

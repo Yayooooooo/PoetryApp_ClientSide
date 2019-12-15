@@ -15,15 +15,15 @@
           <b-nav-item to="/register" data-test="registerBtn"><i class="fa fa-sign-in" style="padding: 10px; font-size: 18px;"> Register</i></b-nav-item>
           <b-nav-item to="/login" data-test="loginBtn"><i class="fa fa-sign-in" style="padding: 10px; font-size: 18px;"> Login </i></b-nav-item>
           <b-nav-item><i class="fa fa-sign-out" style="padding: 10px; font-size: 18px;" @click="logout()"> Logout </i></b-nav-item>
-<!--          <div v-if="user" style="color: white; font-size: 10px;">
+    <!--      <div v-if="id!=null" style="color: white; font-size: 10px;">
             <img :src="user.photoURL" width="40" ><br>
-            {{user.displayName}}<br>
+            {{id}}
             &lt;!&ndash;{{user.uid}}&ndash;&gt;
           </div>
           <div v-else>
             <img src="./assets/homerpic.png" width="50" style="padding-top: 2px;">
-          </div>-->
-        </b-navbar-nav>
+          </div>
+    -->    </b-navbar-nav>
       </b-collapse>
     </b-navbar>
     <router-view/>
@@ -32,9 +32,14 @@
 
 <script>
     import PoemService from '@/services/PoemService'
-
+    import axios from "axios";
 export default {
   name: 'App',
+    data(){
+      return {
+          id:""
+      }
+    },
     methods: {
         logout: function () {
             this.$swal({

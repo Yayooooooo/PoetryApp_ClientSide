@@ -120,7 +120,7 @@
                             })
                         }
                         else {
-                            this.loadAuthors()
+                            this.loadPoems()
                             console.log(response)
                         }
                     })

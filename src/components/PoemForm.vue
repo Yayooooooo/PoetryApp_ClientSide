@@ -45,13 +45,13 @@
 
     export default {
         name: "PoemForm",
-        props: ['addPoemBtnTitle', 'addpoem'],
+        props: ['addPoemBtnTitle', 'poem'],
         data () {
             return {
                 messagetitle: ' Add my poem ',
-                title: this.addpoem.title,
-                author: this.addpoem.author,
-                content: this.addpoem.content,
+                title: this.poem.title,
+                author: this.poem.author,
+                content: this.poem.content,
                 submitStatus: null
             }
         },
@@ -74,14 +74,14 @@
                     this.submitStatus = 'PENDING'
                     setTimeout(() => {
                         this.submitStatus = 'OK'
-                        var addpoem = {
+                        var poem = {
                             author: this.author,
                             title: this.title,
                             content: this.content
                         }
-                        this.addpoem = addpoem
-                        console.log('Submitting in LoginForm : ' + JSON.stringify(this.addpoem, null, 5))
-                        this.$emit('addPoem-is-created-updated', this.addpoem)
+                        this.poem = poem
+                        console.log('Submitting in LoginForm : ' + JSON.stringify(this.poem, null, 5))
+                        this.$emit('addPoem-is-created-updated', this.poem)
                     }, 500)
                 }
             }

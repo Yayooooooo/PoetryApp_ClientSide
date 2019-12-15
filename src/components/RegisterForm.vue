@@ -11,6 +11,7 @@
       <input class="form__input" type="email" v-model.trim="email"/>
     </div>
     <div class="error" v-if="!$v.email.required">Email is Required</div>
+    <div class="error" v-if="!$v.email.email">Email is not valid</div>
     <br>
     <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
       <label class="form-control-label" name="password">Enter a vaild password</label>
@@ -51,7 +52,7 @@
     import Vue from 'vue'
     import VueForm from 'vueform'
     import Vuelidate from 'vuelidate'
-    import { required, minLength } from 'vuelidate/lib/validators'
+    import { required, minLength,email } from 'vuelidate/lib/validators'
 
     Vue.use(VueForm, {
         inputClasses: {
@@ -89,7 +90,8 @@
                 required
             },
             email: {
-                required
+                required,
+                email
             },
             passwordConf: {
                 required

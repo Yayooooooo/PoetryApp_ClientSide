@@ -3,7 +3,7 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="MyPoems" :options="options">
-<!--        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editPoems(props.row._id)"></a>-->
+        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editPoems(props.row._id)"></a>
         <a slot="delete" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deletePoems(props.row._id)"></a>
 
        <!-- <div slot="title" slot-scope="props.row, props.update, props.setEditing, props.isEditing, props.revertValue">
@@ -41,11 +41,11 @@
                 MyPoems: [],
                 props: ['_id'],
                 errors: [],
-                columns: ['title', 'author', 'delete'],
+                columns: ['title', 'content','edit','delete'],
                 editableColumns:['title'],
                 options: {
                     perPage: 10,
-                    filterable: ['title', 'author'],
+                    filterable: ['title'],
                     headings: {
                         title: 'Title',
                         author: 'Author'
@@ -72,7 +72,8 @@
                                 cancelButtonText: 'Cancel',
                                 showCloseButton: true
                                 // showLoaderOnConfirm: true
-                            })
+                            },)
+                            this.$router.push('login');
                         }
                         else {
                             this.MyPoems = response.data
@@ -88,11 +89,11 @@
                 this.$router.params = id
                 this.$router.push('edit')
             },
-            /*editPoems: function (id) {
+            editPoems: function (id) {
                 this.$router.params = id
                 this.$router.push('edit')
                 console.log(this.$router.params)
-            },*/
+            },
             deletePoems: function (id) {
                 this.$swal({
                     title: 'Are you totaly sure?',

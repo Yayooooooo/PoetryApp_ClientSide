@@ -4,7 +4,7 @@
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
-            <poem-form :addpoem="addpoem" addPoemBtnTitle="Add A Poem" @addPoem-is-created-updated="submitPoem"></poem-form>
+            <poem-form :poem="poem" addPoemBtnTitle="Add A Poem" @addPoem-is-created-updated="submitPoem"></poem-form>
         </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
@@ -20,7 +20,7 @@
         name:'AddPoem',
         data () {
             return {
-                addpoem: {title:'', author:'', content:''},
+                poem: {title:'', author:'', content:''},
                 messagetitle: 'Add A Poem',
             }
         },
@@ -28,8 +28,8 @@
             'poem-form': PoemForm,
         },
         methods: {
-            submitPoem: function (addpoem) {
-                PoemService.addMyPoem(addpoem)
+            submitPoem: function (poem) {
+                PoemService.addMyPoem(poem)
                     .then(response => {
                         console.log(response)
                     })

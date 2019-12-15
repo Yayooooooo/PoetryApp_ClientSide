@@ -7,8 +7,8 @@ export default {
   fetchAuthors () {
     return Api().get('/authors')
   },
-  fetchAuthorsById (id) {
-    return Api().get(`/authors/${id}`)
+  fetchPoemsById(id) {
+    return Api().get(`/poems/${id}`)
   },
   fetchMyPoems () {
     return Api().get('/mypoems')
@@ -42,5 +42,8 @@ export default {
   },
   deletePoems(id){
     return Api().delete(`/poems/${id}`)
+  },
+  putEditedPoem(id,edit){
+    return Api().put(`/poems/${id}`, edit, { headers: {'Content-type': 'application/json'} })
   }
 }
