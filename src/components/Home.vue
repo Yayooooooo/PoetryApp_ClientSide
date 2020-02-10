@@ -4,7 +4,7 @@
     <table align="center" style="padding-left: -200px">
       <tr>
         <td>
-          <p class="lead"><b>Daily Recommendation</b>
+          <p class="lead"><b>DONGBALA DONBALA Daily Recommendation</b>
           <p style="font-size: xx-large"><i>On Crime and Punishment</i></p>
           <p>by Kahlil Gibran</p>
           <p style="font-size: larger; text-align: left; padding-left: 250px"> It is when your spirit goes wandering upon the wind,<br>
