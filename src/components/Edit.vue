@@ -10,7 +10,6 @@
         </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
-    <dfooter></dfooter>
   </div>
 </template>
 
@@ -35,8 +34,7 @@
         },
         methods: {
             getPoem: function () {
-                // PoemService.fetchPoems(this.$store.getters['user/user'].uid, this.$router.params)
-                PoemService.fetchPoemsById(this.$router.params)
+                PoemService.fetchPoemsByTitle(this.$router.params)
                     .then(response => {
                         console.log(response)
                         this.temp = response.data
@@ -50,11 +48,13 @@
                     })
             },
             updateEditedPoem: function (poem) {
+                console.log(this.$router.params)
+                console.log("what is above?")
                 PoemService.putEditedPoem(this.$router.params, poem)
                     .then(response => {
                         console.log(response)
                         console.log('AFTER PUT ' + JSON.stringify(poem, null, 5))
-                        this.$router.push('MyPoems')
+                        this.$router.push('/MyPoems')
                     })
                     .catch(error => {
                         this.errors.push(error)
@@ -66,6 +66,13 @@
 </script>
 
 <style scoped>
+  .hero {
+    height: 1000px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   #app1 {
     width: 95%;
     margin: 0 auto;

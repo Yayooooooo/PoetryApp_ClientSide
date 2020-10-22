@@ -39,7 +39,7 @@
     <div class="error" v-if="!$v.gender.required">Gender is Required</div>
 
     <p>
-      <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{ registerBtnTitle }}</button>
+      <button style="background-color:cadetblue" class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{ registerBtnTitle }}</button>
       <!--<a href="/allregisters" class="btn btn-primary btn1" role="button">Manage Registers</a>-->
     </p>
     <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your Register!</p>
@@ -176,7 +176,7 @@
 
   .error {
     border-color: red;
-    background: #157ffb;
+    background: #9a8787;
     color: whitesmoke;
   }
 

@@ -1,13 +1,18 @@
 <template>
   <div class="hero">
-    <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <p class="lead"><b>Poems List</b></p>
     <div id="app1">
-      <v-client-table :columns="columns" :data="AllPoems" :options="options">
-        <a slot="like" slot-scope="props" class="fa fa-thumbs-up fa-2x" @click="like(props.row._id)"></a>
-        <a slot="unlike" slot-scope="props" class="fa fa-thumbs-down fa-2x" @click="unlike(props.row._id)"></a>
+      <b-form-input type="search" v-model="keyWord" placeholder="Please enter the keyword" @input="searchKey" style="width: 20rem;display:inline"></b-form-input>
+      <button class="showAllBtn" @click="loadPoems">Show All Poems</button>
 
-<!--        <div slot="title" slot-scope="props" target="_blank" @click="openPoem(props.row._id)"></div>-->
-      </v-client-table>
+      <div class="poemsList" >
+        <div class="eachPoem" v-for="(poem,index) in AllPoems" v-bind:key="index">
+          <h5 style="display: inline;"><a style="color: black" :href="'#/poem/'+poem.title">{{poem.title}}</a>&emsp;</h5>
+          <p class="fa fa-thumbs-up fa-10x" @click="like(poem._id)">&ensp;{{poem.likes.length}}</p>
+          <p style><b>Author:</b> {{poem.author}}&ensp;&emsp;<b>Translator:</b> {{poem.translator}}</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -23,30 +28,12 @@
         name:'AllPoems',
         data () {
             return {
-                messagetitle: ' Poems List ',
                 AllPoems: [],
-                props: ['_id'],
                 errors: [],
-                columns: ['title', 'author','likesNumber','like','unlike'],
-                options: {
-                    perPage: 10,
-                    filterable: ['title', 'author'],
-                    sortable: ['title', 'author','likesNumber'],
-                    sortIcon: {
-                        base: 'fa fas',
-                        is: 'fa-sort',
-                        up: 'fa-sort-asc',
-                        down: 'fa-sort-desc'
-                    },
-                    headings: {
-                        title: 'Title',
-                        author: 'Author',
-                        likesNumber:'Thumbs Up'
-                    }
-                }
+                keyWord: '',
+                searchList:[]
             }
         },
-        // Fetches Donations when the component is created.
         created () {
             this.loadPoems()
         },
@@ -56,10 +43,8 @@
                     .then(response => {
                         // JSON responses are automatically parsed.
                         this.AllPoems = response.data
-                        for(var i=0;i<this.AllPoems.length;i++){
-                            this.AllPoems[i].likesNumber=response.data[i].likes.length
-                        }
-                        // console.log(this.AllPoems[0].likes.length)
+                        this.searchList = this.AllPoems
+                        console.log(this.AllPoems)
                     })
                     .catch(error => {
                         this.errors.push(error)
@@ -73,11 +58,15 @@
                         if(response.data.message == 'You have already liked this poem!'){
                             this.$swal({
                                 title: 'You have already liked this poem!',
-                                text: 'You can\'t like it twice.',
+                                text: 'This action will cancel your like.',
                                 type: 'warning',
                                 showCancelButton: true,
                                 showCloseButton: true
                             })
+                            PoemService.decreasePoemLikes(id)
+                                .then(response =>{
+                                    this.loadPoems()
+                                })
                         }
                         else if(response.data.message == 'You haven\'t login. Please login first.'){
                             this.$swal({
@@ -128,16 +117,32 @@
                         this.errors.push(error)
                         console.log(error)
                     })
-            }/*,
-            openPoem:function(id){
-                this.$router.param = id
-                this.$router.push('LookPoem')
-            }*/
+            },
+            searchKey(){
+                this.list = this.searchFun(this.searchList,this.keyWord);
+            },
+            searchFun(arr,keyword){
+                if(keyword ==''||keyword==null){
+                    return arr;
+                };
+                let newList = arr.filter(item=>
+                    (item.author.toUpperCase().indexOf(keyword.toUpperCase())>=0)||
+                    (item.title.toUpperCase().indexOf(keyword.toUpperCase())>=0)
+                );
+                this.AllPoems = newList
+            }
         }
     }
 </script>
 
 <style scoped>
+  .hero {
+    height: 1200px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   #app1 {
     width: 60%;
     margin: 0 auto;
@@ -147,5 +152,34 @@
     text-align: center;
     font-size: 45pt;
     margin-bottom: 10px;
+  }
+  .lead{
+    font-family: Lucida Calligraphy;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 3rem;
+  }
+  .poemsList{
+    margin-top: 2rem;
+  }
+  .eachPoem{
+    text-align: left;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-bottom: 3rem;
+  }
+  .showAllBtn{
+    background-color: #6c757d;
+    border-color: #545b62;
+    color: white;
+    position:relative;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 5px;
+    outline:none;
+    border-color: darkgrey;
+    border-width: thin;
+    height: 2.3rem;
+    margin-left: 1rem;
   }
 </style>

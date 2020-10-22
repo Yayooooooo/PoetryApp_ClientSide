@@ -3,7 +3,7 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="MyPoems" :options="options">
-        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editPoems(props.row._id)"></a>
+        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editPoems(props.row.title)"></a>
         <a slot="delete" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deletePoems(props.row._id)"></a>
 
        <!-- <div slot="title" slot-scope="props.row, props.update, props.setEditing, props.isEditing, props.revertValue">
@@ -21,7 +21,6 @@
 
       <div style="text-align: center" id="addPoem" class="fa fa-plus-square fa-2x" title="You can add your poem by clicking here!" @click="addPoem()"></div>
 
-      <dfooter></dfooter>
     </div>
   </div>
 </template>
@@ -89,8 +88,8 @@
                 this.$router.params = id
                 this.$router.push('edit')
             },
-            editPoems: function (id) {
-                this.$router.params = id
+            editPoems: function (title) {
+                this.$router.params = title
                 this.$router.push('edit')
                 console.log(this.$router.params)
             },
@@ -136,6 +135,13 @@
 </script>
 
 <style scoped>
+  .hero {
+    height: 100vh;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   #app1 {
     width: 60%;
     margin: 0 auto;

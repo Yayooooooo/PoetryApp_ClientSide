@@ -1,30 +1,32 @@
 <template>
-  <form @submit.prevent="submit">
-    <div class="form-group" :class="{ 'form-group--error': $v.author.$error }">
-      <label class="form-control-label" name="title">Title</label>
-      <input class="form__input" id="title" placeholder="Enter title here" type="text" v-model.trim="title"/>
-    </div>
-    <div class="error" v-if="!$v.title.required">Title is Required</div>
-    <br>
-    <div class="form-group" :class="{ 'form-group--error': $v.author.$error }">
-      <label class="form__label">Author</label>
-      <input class="form__input" id="author" placeholder="Please enter your username" type="text" v-model.trim="author"/>
-    </div>
-    <div class="error" v-if="!$v.author.required">Author is Required</div>
-    <br>
-    <div class="form-group">
-    <label class="form__label">Content</label>
-    <input class="form__input" id="content" placeholder="Enter content here" type="text" v-model.trim="content"/>
-    </div>
+  <div >
+    <form @submit.prevent="submit">
+      <div class="form-group" :class="{ 'form-group--error': $v.author.$error }">
+        <label class="form-control-label" name="title">Title</label>
+        <input class="form__input" id="title" placeholder="Enter title here" type="text" v-model.trim="title"/>
+      </div>
+      <div class="error" v-if="!$v.title.required">Title is Required</div>
+      <br>
+      <div class="form-group" :class="{ 'form-group--error': $v.author.$error }">
+        <label class="form__label">Author</label>
+        <input class="form__input" id="author" placeholder="Please enter your username" type="text" v-model.trim="author"/>
+      </div>
+      <div class="error" v-if="!$v.author.required">Author is Required</div>
+      <br>
+      <div class="form-group">
+      <label class="form__label">Content</label>
+      <b-form-textarea class="form__input" max-rows="8" id="content" placeholder="Enter content here" type="text" v-model.trim="content"/>
+      </div>
 
-    <p>
-      <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{ addPoemBtnTitle }}</button>
-      <!--<a href="/alladdPoems" class="btn btn-primary btn1" role="button">Manage Logins</a>-->
-    </p>
-    <p class="typo__p" v-if="submitStatus === 'OK'">Add your poem successfully!</p>
-    <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
-    <p class="typo__p" v-if="submitStatus === 'PENDING'">Adding...</p>
-  </form>
+      <p>
+        <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{ addPoemBtnTitle }}</button>
+        <!--<a href="/alladdPoems" class="btn btn-primary btn1" role="button">Manage Logins</a>-->
+      </p>
+      <p class="typo__p" v-if="submitStatus === 'OK'">Add your poem successfully!</p>
+      <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
+      <p class="typo__p" v-if="submitStatus === 'PENDING'">Adding...</p>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -80,8 +82,9 @@
                             content: this.content
                         }
                         this.poem = poem
-                        console.log('Submitting in LoginForm : ' + JSON.stringify(this.poem, null, 5))
+                        console.log('Submitting in PoemForm : ' + JSON.stringify(this.poem, null, 5))
                         this.$emit('addPoem-is-created-updated', this.poem)
+                        this.$router.push("MyPoems")
                     }, 500)
                 }
             }
@@ -90,8 +93,16 @@
 </script>
 
 <style scoped>
+  .hero {
+    height: 1200px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   #app1 {
     width: 95%;
+    height: 1200px;
     margin: 0 auto;
   }
   .required-field > label::after {

@@ -69,10 +69,10 @@ More information please check Design Document.doc
 
 
 
-[Home]: ./img/Home.png
-[Authors]:./img/Authors.png
-[AllPoems]:./img/AllPoems.png
-[Register]:./img/Register.png
-[Login]:./img/Login.png
-[MyPoem]:./img/MyPoem.png
-[LookPoem]:./img/LookPoem.png
+[Home]: imgs/Home.png
+[Authors]:imgs/Authors.png
+[AllPoems]:imgs/AllPoems.png
+[Register]:imgs/Register.png
+[Login]:imgs/Login.png
+[MyPoem]:imgs/MyPoem.png
+[LookPoem]:imgs/LookPoem.png

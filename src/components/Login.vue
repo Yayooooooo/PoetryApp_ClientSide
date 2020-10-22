@@ -15,6 +15,7 @@
 <script>
     import PoemService from '@/services/PoemService'
     import LoginForm from '@/components/LoginForm'
+    import Vue from 'vue'
 
     export default {
         data () {
@@ -40,6 +41,8 @@
                             })
                         }
                         else{
+                            console.log(response.data.data)
+                            Vue.prototype.$userID = response.data.data
                             this.$swal({
                                 title: 'Successfully Login',
                                 text: 'Welcome to the poetry world.',
@@ -47,8 +50,8 @@
                                 showCloseButton: true,
                                 type:'success'
                             })
+                            this.$router.push("/#")
                         }
-
                    })
                     .catch(error => {
                         this.errors.push(error)
@@ -60,6 +63,16 @@
 </script>
 
 <style scoped>
+  .hero {
+    height: 100vh;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .lead {
+    margin-top: 4rem;
+  }
   #app1 {
     width: 95%;
     margin: 0 auto;

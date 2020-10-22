@@ -1,29 +1,54 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" variant="dark" type="dark">
+    <b-navbar toggleable="md" style="background-color: #ffffff; height:99px">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <img src="./assets/mevnnav.png" class="img-circle" style="padding: 10px">
-      <b-navbar-brand to="/">Poetry Web App</b-navbar-brand>
+      <a href="/"><img src="./assets/icon.jpg" class="img-circle" style="padding: 10px"></a>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <b-nav-item to="/#"><i class="fa fa-home" style="padding: 10px; font-size: 18px;"> Home</i></b-nav-item>
-          <b-nav-item to="/AllPoems" data-test="allPoemsBtn"><i class="fa fa-book" style="padding: 10px; font-size: 18px;"> All Poems</i></b-nav-item>
-          <b-nav-item to="/MyPoems" data-test="myPoemsBtn"><i class="fa fa-list" style="padding: 10px; font-size: 18px;"> My Poems</i></b-nav-item>
-          <b-nav-item to="/Authors" data-test="authorsBtn"><i class="fa fa-money" style="padding: 10px; font-size: 18px;"> All Authors</i></b-nav-item>
+          <b-nav-item-dropdown text="Poem" right class="itemTopic">
+            <b-dropdown-item to="/Authors" class="dditem">Poets</b-dropdown-item>
+            <b-dropdown-item href="#/AllPoems" class="dditem">Poems</b-dropdown-item>
+
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown text="Painting" right class="itemTopic">
+<!--            <b-dropdown-item to="/Painters" class="dditem">Painters</b-dropdown-item>-->
+<!--            <b-dropdown-item to="/Paintings" class="dditem">Paintings</b-dropdown-item>-->
+            <b-dropdown-item class="dditem">Painters</b-dropdown-item>
+            <b-dropdown-item class="dditem">Paintings</b-dropdown-item>
+            <b-dropdown-item to="/painting/Scream" class="dditem">Example</b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown text="Sculpture" right class="itemTopic">
+<!--            <b-dropdown-item to="/Sculptors" class="dditem">Sculptor</b-dropdown-item>-->
+<!--            <b-dropdown-item to="/Sculptures" class="dditem">Sculptures</b-dropdown-item>-->
+<!--            <b-dropdown-item to="/sculptures/Scream" class="dditem">Example</b-dropdown-item>-->
+            <b-dropdown-item class="dditem">Sculptor</b-dropdown-item>
+            <b-dropdown-item class="dditem">Sculptures</b-dropdown-item>
+            <b-dropdown-item to="/sculptures/David" class="dditem">Example</b-dropdown-item>
+          </b-nav-item-dropdown>
+
+<!--          <b-nav-item-dropdown text="My Home" right class="itemTopic">-->
+<!--            <b-dropdown-item to="/MyPoems" class="dditem">My Poems</b-dropdown-item>-->
+<!--            <b-dropdown-item to="/SavedPoems" class="dditem">Saved Poems</b-dropdown-item>-->
+<!--            <b-dropdown-item to="/Profile" class="dditem">My Profile</b-dropdown-item>-->
+<!--          </b-nav-item-dropdown>-->
+
         </b-navbar-nav>
+
         <b-navbar-nav class="ml-auto">
+          <b-nav-item to="/MyPoems"><i class="fa fa-sign-out" style="padding: 10px; font-size: 18px;"> My Poems </i></b-nav-item>
           <b-nav-item to="/register" data-test="registerBtn"><i class="fa fa-sign-in" style="padding: 10px; font-size: 18px;"> Register</i></b-nav-item>
-          <b-nav-item to="/login" data-test="loginBtn"><i class="fa fa-sign-in" style="padding: 10px; font-size: 18px;"> Login </i></b-nav-item>
-          <b-nav-item><i class="fa fa-sign-out" style="padding: 10px; font-size: 18px;" @click="logout()"> Logout </i></b-nav-item>
-    <!--      <div v-if="id!=null" style="color: white; font-size: 10px;">
-            <img :src="user.photoURL" width="40" ><br>
-            {{id}}
-            &lt;!&ndash;{{user.uid}}&ndash;&gt;
+          <div v-if="this.$userID == null"  style="color: white; font-size: 10px;">
+            <b-nav-item to="/login" data-test="loginBtn"><i class="fa fa-sign-in" style="padding: 10px; font-size: 18px;"> Login </i></b-nav-item>
           </div>
           <div v-else>
-            <img src="./assets/homerpic.png" width="50" style="padding-top: 2px;">
+            <b-nav-item><i class="fa fa-sign-out" style="padding: 10px; font-size: 18px;" @click="logout()"> Logout </i></b-nav-item>
+<!--            <img src="./assets/homerpic.png" width="50" style="padding-top: 2px;">-->
+            <!--            {{id}}-->
+            <!--            {{user.uid}}-->
           </div>
-    -->    </b-navbar-nav>
+        </b-navbar-nav>
       </b-collapse>
     </b-navbar>
     <router-view/>
@@ -33,11 +58,12 @@
 <script>
     import PoemService from '@/services/PoemService'
     import axios from "axios";
-export default {
+    import Vue from 'vue'
+
+    export default {
   name: 'App',
     data(){
       return {
-          id:""
       }
     },
     methods: {
@@ -61,6 +87,8 @@ export default {
                             console.log(this.message)
                             // Vue.nextTick(() => this.$refs.vuetable.refresh())
                             this.$swal('Logout', 'You successfully logged out', 'success')
+                            Vue.prototype.$userID = null
+                            this.$router.go(0)
                         })
                         .catch(error => {
                             this.$swal('ERROR', 'Something went wrong trying to logout ' + error, 'error')
@@ -84,6 +112,28 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: url("assets/bgok.jpg") no-repeat fixed;
+  /*background-color: #eeeced;*/
+  background: url('assets/bgok.jpg');
 }
+
+.dropdown-menu{
+  min-width:100px;
+  outline:none;
+}
+
+.dropdown-item{
+  font-size: 1rem;
+  font-family: Comic Sans MS;
+  color: black;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+
+
+.itemTopic{
+  font-family: Comic Sans MS;
+  font-size: 1.3rem;
+  padding-left: 1.2rem;
+}
+
 </style>

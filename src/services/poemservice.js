@@ -7,6 +7,9 @@ export default {
   fetchAuthors () {
     return Api().get('/authors')
   },
+  fetchPoemsByTitle(title) {
+    return Api().get(`/poems/${title}`)
+  },
   fetchPoemsById(id) {
     return Api().get(`/poems/${id}`)
   },
@@ -45,5 +48,11 @@ export default {
   },
   putEditedPoem(id,edit){
     return Api().put(`/poems/${id}`, edit, { headers: {'Content-type': 'application/json'} })
+  },
+  fetchUserById(id){
+    return Api().get(`/users/${id}`)
+  },
+  saveProfile(url){
+    return Api().post(`/users/${url}`)
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div id="app1" class="hero">
-    <h3 class="vue-title"><i class="fa fa-money" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <p class="lead"><b>{{messagetitle}}</b></p>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <register-form :register="register" registerBtnTitle="Make Register"
+          <register-form :register="register" registerBtnTitle="Register"
                          @register-is-created-updated="submitRegister"></register-form>
         </div><!-- /col -->
       </div><!-- /row -->
@@ -26,7 +26,7 @@
         data () {
             return {
                 register: {username: '', email:'', password: '', passwordConf: '', gender:''},
-                messagetitle: ' Make Registration ',
+                messagetitle: 'Registration ',
                 googleSignInParams: {
                     client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
                 }
@@ -40,6 +40,14 @@
                 PoemService.postRegister(register)
                     .then(response => {
                         console.log(response)
+                        this.$swal({
+                            title: 'Successfully Registered',
+                            text: 'Welcome to the poetry world.',
+                            showCancelButton: true,
+                            showCloseButton: true,
+                            type:'success'
+                        })
+                        this.$router.push("/login")
                     })
                     .catch(error => {
                         this.errors.push(error)
@@ -60,9 +68,25 @@
 </script>
 
 <style scoped>
+  .hero {
+    height: 100vh;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .lead {
+    margin-top: 4rem;
+  }
   #app1 {
     width: 95%;
     margin: 0 auto;
+  }
+  .lead{
+    font-family: Lucida Calligraphy;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 3rem;
   }
   .vue-title {
     margin-top: 30px;
