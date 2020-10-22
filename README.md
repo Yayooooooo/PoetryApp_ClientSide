@@ -1,9 +1,5 @@
-# Assignment 2 - Web Application Development.
+# Fianl Year Project Client-side
 
-Name: Yuting Jing 
-Student ID:20086428
-
-## Functionality.
 Server:
 1)	User registration, authentication and password encrypted
 2)	User login. Logout
@@ -42,37 +38,3 @@ Client:
 12)	Cancel the like the user gave to the author. (In assignment one, user don’t need to login to use this function. In assignment2, they do.)
 
 Many of the functions cannot be used in client-side because they are administrator functions that cannot be used by registered users.
-
-More information please check Design Document.doc
-
-![][Home]
->>Home has daily recommendation of part of a poem. You can click the link to read the complete poem.
-
-![][LookPoem]
->>After user click the link in the home page, the web will lead user to this page to read the whole version of the poem
-
-![][Authors]
->>All authors shows all authors in the page.
-
-![][AllPoems]
->>All poems shows all the poems in the page.
-
-![][Register]
->>User register in this page. It checks whether the information user enters are valid.
-
-![][Login]
->>User login here. If the User name or passwords don't match, it will have an alter window to tell user to enter the info again.
-
-![][MyPoem]
->>Before user login, the table in this page will be empty. If user doesn't have any poem of his or her own, the table will be empty. 
->>User can add a poem by clicking the button and the web will lead user to another page to enter the info about his or her peom
-
-
-
-[Home]: imgs/Home.png
-[Authors]:imgs/Authors.png
-[AllPoems]:imgs/AllPoems.png
-[Register]:imgs/Register.png
-[Login]:imgs/Login.png
-[MyPoem]:imgs/MyPoem.png
-[LookPoem]:imgs/LookPoem.png
